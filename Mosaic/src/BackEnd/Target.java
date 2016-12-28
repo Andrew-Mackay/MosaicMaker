@@ -19,7 +19,7 @@ public class Target {
 		width = img.getWidth();
 		sourceHeight = pictures.get(0).getHeight();
 		sourceWidth = pictures.get(0).getWidth();
-		System.out.println(height + " " + width);
+		//System.out.println(height + " " + width);
 		targetRatio = width/height;
 		sourceRatio = sourceWidth/sourceHeight;
 		System.out.println(targetRatio + " " + sourceRatio);

@@ -12,6 +12,9 @@ public class Picture {
 	private String colour;
 	private int width;
 	private int height;
+	private int diagonal;
+	private BufferedImage img, croppedImg;
+
 	
 	public Picture(Path address) throws IOException{
 		this.address = address;
@@ -20,14 +23,30 @@ public class Picture {
 	}
 	
 	private void average() throws IOException{
-		BufferedImage img = ImageIO.read(address.toFile());
+	    img = ImageIO.read(address.toFile());
+	    
 		width = img.getWidth();
 		height = img.getHeight();
+		
+		if (width >= height){
+			int x = width/2 - height/2;
+			int y = 0;
+			croppedImg = img.getSubimage(x, y, height, height);
+		}
+		
+		else{
+			int x = 0;
+			int y = height/2 - width/2;
+			croppedImg = img.getSubimage(x, y, width, width);
+		}
+		
+		diagonal = croppedImg.getHeight();
+		
 		int red = 0, green = 0, blue = 0, colour;
 		// use low medium high here when implemented
-		for (int i = 0; i < width; i++){
-			for (int j = 0; j < height; j++){
-				colour = img.getRGB(i, j);
+		for (int i = 0; i < diagonal; i++){
+			for (int j = 0; j < diagonal; j++){
+				colour = croppedImg.getRGB(i, j);
 				red += (colour & 0x00ff0000) >> 16;
 				green += (colour & 0x0000ff00) >> 8;
 				blue += colour & 0x000000ff;			
@@ -60,5 +79,11 @@ public class Picture {
 		return height;
 	}
 
+	public int getDiagonal(){
+		return diagonal;
+	}
+	public BufferedImage getCropped(){
+		return croppedImg;
+	}
 	
 }
