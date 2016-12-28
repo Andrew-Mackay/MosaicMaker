@@ -11,7 +11,6 @@ public class Target {
 	
 	private BufferedImage img;
 	private int width, height, sourceDiagonal;
-	private double targetRatio, sourceRatio;
 	private int targ;
 	private int count;
 	
@@ -21,10 +20,6 @@ public class Target {
 		height = img.getHeight();
 		width = img.getWidth();
 		sourceDiagonal = pictures.get(0).getDiagonal();
-		//System.out.println(height + " " + width);
-		//targ = width*height;
-		//sourceRatio = sourceDiagonal/sourceDiagonal;
-		//System.out.println(targetRatio + " " + sourceRatio);
 		computeRects();
 		
 	}
@@ -56,8 +51,10 @@ public class Target {
         return r;
     }
 }
-/*29 pictures 3200:2400
-final 3200:2400 1.333
-
-along 4 down 3
-4:3*/
+/*
+ * 4:3 image
+ * 24 1:1
+ * width every 8*gcd??
+ * height every 6*gcd
+ * 
+ */
