@@ -29,6 +29,7 @@ public class Target {
 		
 	}
 	
+	//number of rectangles to divide target up into
 	private void computeRects(){
 		int gcd = gcd(height, width);
 		targ = (width/gcd) * (height/gcd);
